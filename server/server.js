@@ -13,12 +13,12 @@ import mongoose from 'mongoose';
 import session from 'express-session';
 import mongoStore from 'connect-mongodb-session';
 
+import getNurses from './routes/api/nurses';
 import routes from './routes';
 
 const port = process.env.PORT || 4783;
 const env = process.env.NODE_ENV || 'development';
 const database = process.env.DB_NAME || 'clipboardinterview';
-
 const app = express();
 
 app.use(compress());
@@ -38,6 +38,8 @@ const store = new MongoDBStore({
 store.on('error', (error) => {
   console.error('session-store-error', error);
 });
+
+app.get('/nurses', getNurses);
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'keyboard cat',
