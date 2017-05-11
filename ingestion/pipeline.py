@@ -80,7 +80,6 @@ def main():
         total_salary = count['total']
     number_of_nurses = db.nurses.count()
     print('average hourly salary: ', round(total_salary / number_of_nurses, 2))
-
+    
 if __name__ == "__main__":
     main()
-
